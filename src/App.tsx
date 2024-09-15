@@ -1,10 +1,27 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
+import styled from "styled-components";
 import shuffle from "lodash/shuffle";
 import slice from "lodash/slice";
 
+import { NUM_WORDS } from "./constants";
+import { WordCard } from "./WordCard";
 import { Word, WORDS } from "./words";
 
-const NUM_WORDS = 3;
+const Offering = styled.div`
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+`;
+
+const Button = styled.button`
+  height: 3em;
+  padding-top: 0.25em;
+  border-radius: 1em;
+  background-color: #ae7e66;
+  font-size: 3em;
+  font-family: "Special Elite", "Courier Prime", "Courier", serif;
+`;
 
 const isDeckExhausted = (words: Word[], index: number) =>
   words.length - (index + NUM_WORDS) < NUM_WORDS;
@@ -33,12 +50,12 @@ const App = () => {
   }, [words, index, setWords, setIndex]);
 
   return (
-    <>
-      {currentWords.map((word) => (
-        <p>{word.letters.map((letter) => (letter == null ? "_" : letter))}</p>
+    <Offering>
+      {currentWords.map((word, i) => (
+        <WordCard key={i} word={word} index={i + 1} />
       ))}
-      <button onClick={drawNewWords}>Draw words</button>
-    </>
+      <Button onClick={drawNewWords}>Draw words</Button>
+    </Offering>
   );
 };
 
