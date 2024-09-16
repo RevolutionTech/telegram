@@ -11,20 +11,23 @@ const Column = styled.div`
 `;
 
 const ColumnIndex = styled.div`
-  font-size: 3em;
+  // https://fluid.style/type?min=1&max=2&min-bp=20&max-bp=55&unit=%22rem%22
+  font-size: clamp(1rem, 0.429rem + 2.857vw, 2rem);
 `;
 
 const LetterBox = styled.div`
   display: flex;
   justify-content: center;
-  width: 0.94em;
-  height: 0.94em;
+  width: 1.1em;
+  height: 1.1em;
   box-shadow: 0 0 0 0.03em black inset;
-  font-size: 10em;
+  // https://fluid.style/type?min=3&max=5&min-bp=20&max-bp=55&unit=%22rem%22
+  font-size: clamp(3rem, 1.857rem + 5.714vw, 5rem);
 `;
 
 const Letter = styled.div`
-  padding-top: 0.1em;
+  // https://fluid.style/spacing?min=12&max=16&min-bp=320&max-bp=880&unit=%22px%22
+  padding-top: clamp(12px, 9.714px + 0.714vw, 16px);
 `;
 
 export enum WordLetterDisplayType {

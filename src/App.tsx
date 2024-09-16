@@ -8,10 +8,12 @@ import { WordCard } from "./WordCard";
 import { Word, WORDS } from "./words";
 
 const Offering = styled.div`
+  height: 100%;
   margin: 1em;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  justify-content: space-around;
+  gap: 16px;
 `;
 
 const Button = styled.button`
@@ -19,7 +21,8 @@ const Button = styled.button`
   padding-top: 0.25em;
   border-radius: 1em;
   background-color: #ae7e66;
-  font-size: 3em;
+  // https://fluid.style/type?min=2&max=3&min-bp=20&max-bp=55&unit=%22rem%22
+  font-size: clamp(2rem, 1.429rem + 2.857vw, 3rem);
   font-family: "Special Elite", "Courier Prime", "Courier", serif;
 `;
 
