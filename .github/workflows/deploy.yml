@@ -1,0 +1,24 @@
+name: Deploy
+on: workflow_dispatch
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    environment: prod
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install
+
+      - run: pnpm build
+      - uses: aws-actions/configure-aws-credentials@v3.0.1
+        with:
+          role-to-assume: ${{ vars.IAM_ROLE_ARN }}
+          aws-region: us-east-1
+      - name: Upload static content
+        run: aws s3 sync dist s3://${{ vars.S3_BUCKET }}/ --no-progress --follow-symlinks --delete
