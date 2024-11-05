@@ -57,7 +57,7 @@ const App = () => {
       {currentWords.map((word, i) => (
         <WordCard key={i} word={word} index={i + 1} />
       ))}
-      <Button onClick={drawNewWords}>Draw words</Button>
+      <Button onClick={drawNewWords}>Draw word fragments</Button>
     </Offering>
   );
 };
