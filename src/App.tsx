@@ -3,7 +3,9 @@ import styled from "styled-components";
 import shuffle from "lodash/shuffle";
 import slice from "lodash/slice";
 
+import { Buttons, MainButton } from "./buttons";
 import { NUM_WORDS } from "./constants";
+import { HelpButton } from "./HelpButton";
 import { WordCard } from "./WordCard";
 import { Word, WORDS } from "./words";
 
@@ -14,16 +16,6 @@ const Offering = styled.div`
   flex-direction: column;
   justify-content: space-around;
   gap: 16px;
-`;
-
-const Button = styled.button`
-  height: 3em;
-  padding-top: 0.25em;
-  border-radius: 1em;
-  background-color: #ae7e66;
-  // https://fluid.style/type?min=2&max=3&min-bp=20&max-bp=55&unit=%22rem%22
-  font-size: clamp(2rem, 1.429rem + 2.857vw, 3rem);
-  font-family: "Special Elite", "Courier Prime", "Courier", serif;
 `;
 
 const isDeckExhausted = (words: Word[], index: number) =>
@@ -57,7 +49,10 @@ const App = () => {
       {currentWords.map((word, i) => (
         <WordCard key={i} word={word} index={i + 1} />
       ))}
-      <Button onClick={drawNewWords}>Draw word fragments</Button>
+      <Buttons>
+        <MainButton onClick={drawNewWords}>Draw word fragments</MainButton>
+        <HelpButton />
+      </Buttons>
     </Offering>
   );
 };
